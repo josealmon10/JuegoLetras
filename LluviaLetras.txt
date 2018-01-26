@@ -1,0 +1,15 @@
+Para el dia 6 --> Lluvia de letras (juego)
+Letras que caen de forma aleatoria de tal forma que cuando tocan una barrita al final
+de la vista, se pierde la partida. Si el usuario pulsa una letra, esta desaparece y se
+suma un punto. Si pulsa una tecla que no esta en pantalla en el momento resta un punto
+(que se vea visualmente ambas situaciones).
+Cuando se hayan acertado 10 letras aumenta el nivel (esquina superior derecha). Esto significa
+que las letras caigan con mas rapidez y haya mas letras en pantalla. Aumentamos la dificultad
+hasta lo que queramos.
+En la barra que si toca una letra se pierde habra un bloque que se movera con las flechas,
+de izquierda a derecha,. Este sirve para redirigir letras hacia arriba, sin embargo si llega
+arriba del todo tambien se pierde el juego.
+
+Un menubar con: archivo; que va a tener salir, guardar y cargar (estas dos opciones son opcionales)
+guardar guarda el estado de la partida para recuperarlo con cargar; level que tenga al menos
+cinco niveles con acceso rapido para cambiar de nivel
