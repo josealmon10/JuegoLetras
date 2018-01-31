@@ -21,4 +21,9 @@ public class Letra extends JLabel{
     public int getY() {
         return y;
     }
+    
+    public void bajar(){
+        y+=2;
+    }
+   
 }
