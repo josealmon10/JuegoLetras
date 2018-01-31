@@ -27,13 +27,10 @@ public class Controlador implements KeyListener,ActionListener{
 
             } else if(e.getKeyCode() == KeyEvent.VK_LEFT){
 
+            }else{
+                v.compAcierto(e.getKeyChar());
             }
-            v.compAcierto(e.getKeyChar());
         }
-        //if(e.getKeyCode()==KeyEvent.VK_ENTER && isDead){
-        //    v.reset();
-        //    isDead=false;
-        //}
     }
 
     @Override
