@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Controlador implements KeyListener,ActionListener{
-    
+    int cont=500,game=1;
     private Vista v;
     
     public Controlador(){
@@ -37,9 +37,17 @@ public class Controlador implements KeyListener,ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        v.generarLetras();
+        if(cont==500){
+            v.generarLetras();
+            cont=0;
+        }
+        v.bajar();
         v.repaint();
+        cont+=50;
     }
 
+    public int getGame() {
+        return game;
+    }
     
 }
