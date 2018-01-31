@@ -14,7 +14,8 @@ import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
 public class Vista extends JFrame{
-    
+   
+    private ControladorMenu cm;
     private Controlador c;
     private JLabel score,nivel,lose;
     private ArrayList<Letra> al=new ArrayList();
@@ -24,6 +25,7 @@ public class Vista extends JFrame{
     
     public Vista(Controlador c){
         this.c=c;
+        cm=new ControladorMenu();
         
         generarVista();
     }
@@ -93,6 +95,12 @@ public class Vista extends JFrame{
         n4.setAccelerator(KeyStroke.getKeyStroke('4', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         n5.setAccelerator(KeyStroke.getKeyStroke('5', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         //Añado la barra a la ventana.
+        s.addActionListener(cm);
+        n1.addActionListener(cm);
+        n2.addActionListener(cm);
+        n3.addActionListener(cm);
+        n4.addActionListener(cm);
+        n5.addActionListener(cm);
         this.setJMenuBar(mb);
     }
     public void generarLetras(){
