@@ -17,23 +17,24 @@ public class Vista extends JFrame{
     
     public Vista(Controlador c){
         this.c=c;
-        
         generarVista();
     }
     
     private void generarVista(){
         this.setLayout(null);
-        
+        //Puntuacion
         score=new JLabel("0");
         score.setBounds(730,30, 50, 50);
         score.setFont (score.getFont ().deriveFont (64.0f));
         this.add(score);
-        
+        //Ventana
         this.addKeyListener(c);
         this.setBounds(100, 100, 800, 600);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         new Timer(500, c).start();
+        //Barra
+        
     }
     
     public void generarLetras(){
