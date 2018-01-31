@@ -24,13 +24,14 @@ public class Vista extends JFrame{
     
     public Vista(Controlador c){
         this.c=c;
-        crearMenu();
+        
         generarVista();
     }
     
     private void generarVista(){
         this.setLayout(null);
         
+        crearMenu();
         generarLabels();
         
         this.addKeyListener(c);
