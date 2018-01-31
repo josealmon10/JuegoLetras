@@ -3,9 +3,14 @@ package juegoletras;
 
 import java.awt.Menu;
 import java.awt.MenuBar;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
 public class Vista extends JFrame{
@@ -19,7 +24,7 @@ public class Vista extends JFrame{
     
     public Vista(Controlador c){
         this.c=c;
-        
+        crearMenu();
         generarVista();
     }
     
@@ -52,7 +57,43 @@ public class Vista extends JFrame{
         nivel.setFont (nivel.getFont ().deriveFont (30.0f));
         this.add(nivel);
     }
-    
+    public void crearMenu(){
+        //Creo la barra de menu.
+        JMenuBar mb=new JMenuBar();        
+        //Creo los elementos de la barra y los añado.
+        JMenu mArchivo=new JMenu("Archivo");
+        JMenu mNivel=new JMenu("Nivel");
+        mb.add(mArchivo);        
+        mb.add(mNivel);
+        //Creo los elementos que van dentro del elemento archivo.
+        JMenuItem s=new JMenuItem("Salir");
+        JMenuItem g=new JMenuItem("Guardar");
+        JMenuItem c=new JMenuItem("Cargar");
+        //Creo los elementos que van dentro del elemento nivel.
+        JMenuItem n1=new JMenuItem("Nivel 1");
+        JMenuItem n2=new JMenuItem("Nivel 2");
+        JMenuItem n3=new JMenuItem("Nivel 3");
+        JMenuItem n4=new JMenuItem("Nivel 4");
+        JMenuItem n5=new JMenuItem("Nivel 5");
+        //Añado los elementos
+        mArchivo.add(g);        
+        mArchivo.add(c);
+        mArchivo.addSeparator();
+        mArchivo.add(s);
+        mNivel.add(n1);
+        mNivel.add(n2);
+        mNivel.add(n3);
+        mNivel.add(n4);
+        mNivel.add(n5);
+        //Crear
+        n1.setAccelerator(KeyStroke.getKeyStroke('1', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        n2.setAccelerator(KeyStroke.getKeyStroke('2', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        n3.setAccelerator(KeyStroke.getKeyStroke('3', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        n4.setAccelerator(KeyStroke.getKeyStroke('4', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        n5.setAccelerator(KeyStroke.getKeyStroke('5', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        //Añado la barra a la ventana.
+        this.setJMenuBar(mb);
+    }
     public void generarLetras(){
         int comp=0;
         let=generador.generarLetra(c.getGame());
