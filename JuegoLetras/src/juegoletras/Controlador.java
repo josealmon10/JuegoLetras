@@ -16,18 +16,18 @@ public class Controlador implements KeyListener,ActionListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        System.out.println(e.getKeyChar());
-        System.out.println(e.getKeyCode());
         
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-            System.out.println("derecha");
+            
         } else if(e.getKeyCode() == KeyEvent.VK_LEFT){
-            System.out.println("izquierda");
+            
         }
+        v.eliminarLetra(e.getKeyChar());
+        
     }
 
     @Override

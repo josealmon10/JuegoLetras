@@ -11,7 +11,6 @@ public class Letra extends JLabel{
         this.x=x;
         this.y=y;
         this.setText(text);
-        System.out.println("Creado: "+x+" "+y+" "+text);
     }
 
     public int getX() {
