@@ -72,6 +72,9 @@ public class Vista extends JFrame{
         }
         System.out.println(punt);
         score.setText("PUNTACION: "+punt);
+        if(punt==10){
+            al.get(0).setSpeed(4);
+        }
         this.repaint();
     }
     
