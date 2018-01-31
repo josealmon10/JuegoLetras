@@ -6,12 +6,12 @@ import javax.swing.JLabel;
 public class Letra extends JLabel{
     
     private int x,y;
+    private static int speed=2;
     
     public Letra(int x,int y,String text){
         this.x=x;
         this.y=y;
         this.setText(text);
-        System.out.println("Creado: "+x+" "+y+" "+text);
     }
 
     public int getX() {
@@ -23,7 +23,11 @@ public class Letra extends JLabel{
     }
     
     public void bajar(){
-        y+=2;
+        y+=speed;
+    }
+    
+    public void setSpeed(int sp){
+        speed=sp;
     }
    
 }

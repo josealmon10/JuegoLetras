@@ -1,4 +1,3 @@
-
 package juegoletras;
 
 public class GeneradorLetras {
