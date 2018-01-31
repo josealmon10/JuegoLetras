@@ -7,8 +7,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Controlador implements KeyListener,ActionListener{
-    int cont=500,game=1;
+    private int cont=500,game=1;
     private Vista v;
+    private boolean isDead;
     
     public Controlador(){
         v=new Vista(this);
@@ -37,17 +38,26 @@ public class Controlador implements KeyListener,ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(cont==500){
-            v.generarLetras();
-            cont=0;
+        setIsDead(v.compAlive());
+        if(!isDead){
+            if(cont==500){
+                v.generarLetras();
+                cont=0;
+            }
+            v.bajar();
+            cont+=50;
+        }else{
+            v.lose();
         }
-        v.bajar();
         v.repaint();
-        cont+=50;
     }
 
     public int getGame() {
         return game;
     }
-    
+
+    public void setIsDead(Boolean isDead) {
+        this.isDead = isDead;
+    }
+
 }

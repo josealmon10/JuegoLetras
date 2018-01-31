@@ -9,7 +9,7 @@ import javax.swing.Timer;
 public class Vista extends JFrame{
     
     private Controlador c;
-    private JLabel score,nivel;
+    private JLabel score,nivel,lose;
     private ArrayList<Letra> al=new ArrayList();
     private char let;
     private GeneradorLetras generador=new GeneradorLetras();
@@ -24,6 +24,12 @@ public class Vista extends JFrame{
     private void generarVista(){
         this.setLayout(null);
         //puntuaicon
+        lose=new JLabel("¡Has perdido! ESCOGE UN NIVEL PARA VOLVER A JUGAR");
+        lose.setBounds(200, 300, 500, 30);
+        lose.setFont (lose.getFont ().deriveFont (30.0f));
+        this.add(lose);
+        lose.setVisible(false);
+        
         score=new JLabel("PUNTUACION: 0");
         score.setBounds(20,500, 400, 100);
         score.setFont (score.getFont ().deriveFont (30.0f));
@@ -31,7 +37,7 @@ public class Vista extends JFrame{
         
         nivel=new JLabel("Nivel "+c.getGame());
         nivel.setBounds(660, 0, 300, 100);
-        nivel.setFont (score.getFont ().deriveFont (30.0f));
+        nivel.setFont (nivel.getFont ().deriveFont (30.0f));
         this.add(nivel);
         
         this.addKeyListener(c);
@@ -78,4 +84,22 @@ public class Vista extends JFrame{
         this.repaint();
     }
     
+    public boolean compAlive(){
+        boolean alive=false;
+        for (int i = 0; i < al.size(); i++) {
+            if(al.get(i).getY()>=490){
+                alive=true;
+            }
+        }
+        return alive;
+    }
+    
+    public void lose(){
+        for (int i = 0; i < al.size(); i++) {
+            this.remove(al.get(i));
+        }
+        al.clear();
+        lose.setVisible(true);
+        this.repaint();
+    }
 }
