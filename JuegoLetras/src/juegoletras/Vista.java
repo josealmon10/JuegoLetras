@@ -4,9 +4,6 @@ package juegoletras;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.Timer;
 
 public class Vista extends JFrame{
@@ -18,9 +15,9 @@ public class Vista extends JFrame{
     private GeneradorLetras generador=new GeneradorLetras();
     
     public Vista(Controlador c){
-        this.c=c;        
+        this.c=c;
+        
         generarVista();
-        crearMenu();
     }
     
     private void generarVista(){
@@ -59,26 +56,5 @@ public class Vista extends JFrame{
         }
         this.repaint();
     }
-    public void crearMenu(){
-        //Creo la barra de menu.
-        JMenuBar mb=new JMenuBar();
-        //Creo los elementos de la barra y los añado.
-        JMenu mArchivo=new JMenu("Archivo");
-        JMenu mNivel=new JMenu("Nivel");
-        mb.add(mArchivo);        
-        mb.add(mNivel);
-        //Creo los elementos que van dentro del elemento archivo.
-        JMenuItem s=new JMenuItem("Salir");
-        JMenuItem g=new JMenuItem("Guardar");
-        JMenuItem c=new JMenuItem("Cargar");
-        //Añado los elementos
-        mArchivo.add(g);        
-        mArchivo.add(c);
-        mArchivo.addSeparator();
-        mArchivo.add(s);
-        //Enlazo el controlador de los elementos.
-                        
-        //Añado la barra a la ventana.
-        this.setJMenuBar(mb);
-    }
+    
 }
