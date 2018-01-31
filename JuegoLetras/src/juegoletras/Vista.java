@@ -22,7 +22,7 @@ public class Vista extends JFrame{
     
     private void generarVista(){
         this.setLayout(null);
-        
+        //puntuaicon
         score=new JLabel("PUNTUACION: 0");
         score.setBounds(20,500, 400, 100);
         score.setFont (score.getFont ().deriveFont (30.0f));
