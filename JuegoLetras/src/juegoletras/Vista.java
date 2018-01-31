@@ -24,8 +24,8 @@ public class Vista extends JFrame{
     private void generarVista(){
         this.setLayout(null);
         //puntuaicon
-        lose=new JLabel("¡Has perdido! ESCOGE UN NIVEL PARA VOLVER A JUGAR");
-        lose.setBounds(200, 300, 500, 30);
+        lose=new JLabel("¡Has perdido! Escoge un nuevo nivel");
+        lose.setBounds(140, 250, 600, 30);
         lose.setFont (lose.getFont ().deriveFont (30.0f));
         this.add(lose);
         lose.setVisible(false);

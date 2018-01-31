@@ -38,7 +38,9 @@ public class Controlador implements KeyListener,ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        setIsDead(v.compAlive());
+        if(!isDead){
+            setIsDead(v.compAlive());
+        }
         if(!isDead){
             if(cont==500){
                 v.generarLetras();
