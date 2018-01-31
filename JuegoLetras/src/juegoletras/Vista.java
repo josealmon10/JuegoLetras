@@ -1,8 +1,6 @@
 
 package juegoletras;
 
-import java.awt.Menu;
-import java.awt.MenuBar;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -17,7 +15,7 @@ public class Vista extends JFrame{
    
     private ControladorMenu cm;
     private Controlador c;
-    private JLabel score,nivel,lose;
+    private JLabel score,nivel,lose,inicio;
     private ArrayList<Letra> al=new ArrayList();
     private char let;
     private GeneradorLetras generador=new GeneradorLetras();
@@ -25,7 +23,7 @@ public class Vista extends JFrame{
     
     public Vista(Controlador c){
         this.c=c;
-        cm=new ControladorMenu();
+        cm=new ControladorMenu(this);
         
         generarVista();
     }
@@ -44,6 +42,11 @@ public class Vista extends JFrame{
     }
     
     public void generarLabels(){
+        inicio=new JLabel("Escoge un nivel para comenzar");
+        inicio.setBounds(140, 250, 600, 40);
+        inicio.setFont (inicio.getFont ().deriveFont (30.0f));
+        this.add(inicio);
+        
         lose=new JLabel("¡Has perdido! Escoge un nuevo nivel");
         lose.setBounds(140, 250, 600, 40);
         lose.setFont (lose.getFont ().deriveFont (30.0f));
@@ -55,7 +58,7 @@ public class Vista extends JFrame{
         score.setFont (score.getFont ().deriveFont (30.0f));
         this.add(score);
         
-        nivel=new JLabel("Nivel "+c.getGame());
+        nivel=new JLabel("Nivel: ");
         nivel.setBounds(660, 0, 300, 100);
         nivel.setFont (nivel.getFont ().deriveFont (30.0f));
         this.add(nivel);
@@ -172,10 +175,17 @@ public class Vista extends JFrame{
         this.repaint();
     }
     
-    public void reset(){
-        lose.setVisible(false);
-        score.setText("PUNTUACION: 0");
-        punt=0;
-        this.repaint();
+    public void start(int game){
+        if(c.isIsDead()){
+            c.setGame(game);
+            c.setStart(true);
+            c.setIsDead(false);
+            inicio.setVisible(false);
+            lose.setVisible(false);
+            score.setText("PUNTUACION: 0");
+            nivel.setText("Nivel: "+game);
+            punt=0;
+            this.repaint();
+        }
     }
 }
