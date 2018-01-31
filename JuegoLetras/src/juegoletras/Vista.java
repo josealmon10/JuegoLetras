@@ -13,7 +13,7 @@ public class Vista extends JFrame{
     private ArrayList<Letra> al=new ArrayList();
     private char let;
     private GeneradorLetras generador=new GeneradorLetras();
-    private int punt=0;
+    private int punt;
     
     public Vista(Controlador c){
         this.c=c;
@@ -24,7 +24,7 @@ public class Vista extends JFrame{
     private void generarVista(){
         this.setLayout(null);
         //puntuaicon
-        score=new JLabel("PUNTUACION: "+punt);
+        score=new JLabel("PUNTUACION: 0");
         score.setBounds(20,500, 400, 100);
         score.setFont (score.getFont ().deriveFont (30.0f));
         this.add(score);
@@ -71,6 +71,7 @@ public class Vista extends JFrame{
             punt--;
         }
         System.out.println(punt);
+        score.setText("PUNTACION: "+punt);
         this.repaint();
     }
     
