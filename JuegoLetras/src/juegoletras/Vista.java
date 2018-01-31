@@ -35,7 +35,7 @@ public class Vista extends JFrame{
         generarLabels();
         
         this.addKeyListener(c);
-        this.setBounds(100, 100, 800, 600);
+        this.setBounds(100, 100, 800, 620);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         new Timer(50, c).start();
@@ -145,7 +145,7 @@ public class Vista extends JFrame{
     public boolean compAlive(){
         boolean alive=false;
         for (int i = 0; i < al.size(); i++) {
-            if(al.get(i).getY()>=490){
+            if(al.get(i).getY()>=500){
                 alive=true;
             }
         }

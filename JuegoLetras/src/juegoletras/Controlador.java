@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Controlador implements KeyListener,ActionListener{
-    private int cont=500,game=1;
+    private int cont=500,game=5;
     private Vista v;
     private boolean isDead;
     
