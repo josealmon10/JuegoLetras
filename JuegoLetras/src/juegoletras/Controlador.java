@@ -7,9 +7,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Controlador implements KeyListener,ActionListener{
-    private int cont=500,game=1;
+    private int cont,game,velgen;
     private Vista v;
-    private boolean isDead;
+    private boolean isDead=true,start=false;
     
     public Controlador(){
         v=new Vista(this);
@@ -27,12 +27,9 @@ public class Controlador implements KeyListener,ActionListener{
 
             } else if(e.getKeyCode() == KeyEvent.VK_LEFT){
 
+            }else{
+                v.compAcierto(e.getKeyChar());
             }
-            v.compAcierto(e.getKeyChar());
-        }
-        if(e.getKeyCode()==KeyEvent.VK_ENTER && isDead){
-            v.reset();
-            isDead=false;
         }
     }
 
@@ -47,13 +44,13 @@ public class Controlador implements KeyListener,ActionListener{
             setIsDead(v.compAlive());
         }
         if(!isDead){
-            if(cont==500){
+            if(cont==velgen){
                 v.generarLetras();
                 cont=0;
             }
             v.bajar();
             cont+=50;
-        }else{
+        }else if(isDead && start){
             v.lose();
         }
         v.repaint();
@@ -67,4 +64,36 @@ public class Controlador implements KeyListener,ActionListener{
         this.isDead = isDead;
     }
 
+    public void setGame(int game) {
+        this.game = game;
+        switch(game){
+            case 1:
+                velgen=500;
+                break;
+            case 2:
+                velgen=400;
+                break;
+            case 3:
+                velgen=300;
+                break;
+            case 4:
+                velgen=200;
+                break;
+            case 5:
+                velgen=100;
+                break;
+        }
+        cont=0;
+    }
+
+    public void setStart(boolean start) {
+        this.start = start;
+    }
+
+    public boolean isIsDead() {
+        return isDead;
+    }
+    
+    
+    
 }

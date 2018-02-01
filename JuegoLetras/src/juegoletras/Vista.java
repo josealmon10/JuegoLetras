@@ -1,8 +1,6 @@
 
 package juegoletras;
 
-import java.awt.Menu;
-import java.awt.MenuBar;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -14,33 +12,42 @@ import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
 public class Vista extends JFrame{
-    
+   
+    private ControladorMenu cm;
     private Controlador c;
-    private JLabel score,nivel,lose;
+    private JLabel score,nivel,lose,inicio;
     private ArrayList<Letra> al=new ArrayList();
     private char let;
-    private GeneradorLetras generador=new GeneradorLetras();
+    private GeneradorLetras generador;
     private int punt;
     
     public Vista(Controlador c){
         this.c=c;
-        crearMenu();
+        cm=new ControladorMenu(this);
+        generador=new GeneradorLetras();
+        
         generarVista();
     }
     
     private void generarVista(){
         this.setLayout(null);
         
+        crearMenu();
         generarLabels();
         
         this.addKeyListener(c);
-        this.setBounds(100, 100, 800, 600);
+        this.setBounds(100, 100, 800, 620);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         new Timer(50, c).start();
     }
     
     public void generarLabels(){
+        inicio=new JLabel("Escoge un nivel para comenzar");
+        inicio.setBounds(140, 250, 600, 40);
+        inicio.setFont (inicio.getFont ().deriveFont (30.0f));
+        this.add(inicio);
+        
         lose=new JLabel("¡Has perdido! Escoge un nuevo nivel");
         lose.setBounds(140, 250, 600, 40);
         lose.setFont (lose.getFont ().deriveFont (30.0f));
@@ -52,7 +59,7 @@ public class Vista extends JFrame{
         score.setFont (score.getFont ().deriveFont (30.0f));
         this.add(score);
         
-        nivel=new JLabel("Nivel "+c.getGame());
+        nivel=new JLabel("Nivel: ");
         nivel.setBounds(660, 0, 300, 100);
         nivel.setFont (nivel.getFont ().deriveFont (30.0f));
         this.add(nivel);
@@ -92,6 +99,12 @@ public class Vista extends JFrame{
         n4.setAccelerator(KeyStroke.getKeyStroke('4', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         n5.setAccelerator(KeyStroke.getKeyStroke('5', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         //Añado la barra a la ventana.
+        s.addActionListener(cm);
+        n1.addActionListener(cm);
+        n2.addActionListener(cm);
+        n3.addActionListener(cm);
+        n4.addActionListener(cm);
+        n5.addActionListener(cm);
         this.setJMenuBar(mb);
     }
     public void generarLetras(){
@@ -144,7 +157,7 @@ public class Vista extends JFrame{
     public boolean compAlive(){
         boolean alive=false;
         for (int i = 0; i < al.size(); i++) {
-            if(al.get(i).getY()>=490){
+            if(al.get(i).getY()>=500){
                 alive=true;
             }
         }
@@ -163,10 +176,17 @@ public class Vista extends JFrame{
         this.repaint();
     }
     
-    public void reset(){
-        lose.setVisible(false);
-        score.setText("PUNTUACION: 0");
-        punt=0;
-        this.repaint();
+    public void start(int game){
+        if(c.isIsDead()){
+            c.setGame(game);
+            c.setStart(true);
+            c.setIsDead(false);
+            inicio.setVisible(false);
+            lose.setVisible(false);
+            score.setText("PUNTUACION: 0");
+            nivel.setText("Nivel: "+game);
+            punt=0;
+            this.repaint();
+        }
     }
 }
