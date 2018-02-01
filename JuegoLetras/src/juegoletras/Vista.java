@@ -18,12 +18,13 @@ public class Vista extends JFrame{
     private JLabel score,nivel,lose,inicio;
     private ArrayList<Letra> al=new ArrayList();
     private char let;
-    private GeneradorLetras generador=new GeneradorLetras();
+    private GeneradorLetras generador;
     private int punt;
     
     public Vista(Controlador c){
         this.c=c;
         cm=new ControladorMenu(this);
+        generador=new GeneradorLetras();
         
         generarVista();
     }
