@@ -5,7 +5,7 @@ import javax.swing.JLabel;
 
 public class Letra extends JLabel{
     
-    private int x,y;
+    private int x,y,direccion=1;
     private static int speed=2;
     
     public Letra(int x,int y,String text){
@@ -22,12 +22,24 @@ public class Letra extends JLabel{
         return y;
     }
     
-    public void bajar(){
-        y+=speed;
+    public void mover(){
+        if(direccion==1){
+            y+=speed;
+        }else{
+            y-=speed;
+        }
     }
     
     public void setSpeed(int sp){
         speed=sp;
     }
    
+    public void changeDirection(){
+        direccion=2;
+    }
+
+    public int getDireccion() {
+        return direccion;
+    }
+    
 }

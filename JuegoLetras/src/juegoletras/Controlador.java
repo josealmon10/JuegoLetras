@@ -24,9 +24,9 @@ public class Controlador implements KeyListener,ActionListener{
     public void keyPressed(KeyEvent e) {
         if(!isDead){
             if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-
+                v.moverBarra(1);
             } else if(e.getKeyCode() == KeyEvent.VK_LEFT){
-
+                v.moverBarra(2);
             }else{
                 v.compAcierto(e.getKeyChar());
             }
@@ -49,6 +49,7 @@ public class Controlador implements KeyListener,ActionListener{
                 cont=0;
             }
             v.bajar();
+            v.compBarra();
             cont+=50;
         }else if(isDead && start){
             v.lose();
