@@ -22,12 +22,13 @@ public class Controlador implements KeyListener,ActionListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
+        System.out.println(e.getKeyCode());
         if(!isDead){
             if(e.getKeyCode() == KeyEvent.VK_RIGHT){
                 v.moverBarra(1);
             } else if(e.getKeyCode() == KeyEvent.VK_LEFT){
                 v.moverBarra(2);
-            }else{
+            }else if(e.getKeyCode()!=20){
                 v.compAcierto(e.getKeyChar());
             }
         }

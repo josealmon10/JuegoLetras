@@ -184,6 +184,9 @@ public class Vista extends JFrame{
         al.clear();
         lose.setVisible(true);
         barra.setVisible(false);
+        if(punt<0){
+            score.setText("Deberias practicar mas :(");
+        }
         this.repaint();
     }
     
