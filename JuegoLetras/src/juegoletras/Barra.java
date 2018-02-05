@@ -10,16 +10,18 @@ public class Barra extends JPanel{
         this.x=x;
         this.y=y;        
     }
-    public void moverDer(){
-        x+=5;
-    }
-    public void moverIzq(){
-        x-=5;
-    }
     public int getX() {
         return x;
     }
     public int getY() {
         return y;
-    }    
+    }
+    
+    public void moverBarra(int num){
+        if(num==1){
+            x+=10;
+        }else{
+            x-=10;
+        }
+    }
 }

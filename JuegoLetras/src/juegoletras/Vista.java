@@ -1,6 +1,7 @@
 
 package juegoletras;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ public class Vista extends JFrame{
     private char let;
     private GeneradorLetras generador;
     private int punt;
+    private Barra barra;
     
     public Vista(Controlador c){
         this.c=c;
@@ -34,6 +36,13 @@ public class Vista extends JFrame{
         
         crearMenu();
         generarLabels();
+        
+        barra=new Barra(350,480);
+        barra.setBounds(barra.getY(), barra.getX(), 100,20 );
+        barra.setBackground(Color.GRAY);
+        barra.setVisible(false);
+        this.add(barra);
+        System.out.println(barra);
         
         this.addKeyListener(c);
         this.setBounds(100, 100, 800, 620);
@@ -122,12 +131,11 @@ public class Vista extends JFrame{
             this.add(al.get(al.size()-1));
         }
         
-        
     }
     
     public void bajar(){
         for (int i = 0; i < al.size(); i++) {
-            al.get(i).bajar();
+            al.get(i).mover();
             al.get(i).setBounds(al.get(al.size()-1).getX(), al.get(al.size()-1).getY(), 30, 30);
         }
         this.repaint();
@@ -157,7 +165,9 @@ public class Vista extends JFrame{
     public boolean compAlive(){
         boolean alive=false;
         for (int i = 0; i < al.size(); i++) {
-            if(al.get(i).getY()>=500){
+            if(al.get(i).getY()>=500 && al.get(i).getDireccion()==1){
+                alive=true;
+            }else if(al.get(i).getY()<=5 && al.get(i).getDireccion()==2){
                 alive=true;
             }
         }
@@ -173,6 +183,7 @@ public class Vista extends JFrame{
         }
         al.clear();
         lose.setVisible(true);
+        barra.setVisible(false);
         this.repaint();
     }
     
@@ -186,7 +197,21 @@ public class Vista extends JFrame{
             score.setText("PUNTUACION: 0");
             nivel.setText("Nivel: "+game);
             punt=0;
+            barra.setVisible(true);
             this.repaint();
+        }
+    }
+    
+    public void moverBarra(int num){
+        barra.moverBarra(num);
+        this.repaint();
+    }
+    
+    public void compBarra(){
+        for (int i = 0; i < al.size(); i++) {
+            if(al.get(i).getY()>=458 && al.get(i).getX()>barra.getX() && al.get(i).getX()<barra.getX()+105 && al.get(i).getDireccion()==1){
+                al.get(i).changeDirection();
+            }
         }
     }
 }
