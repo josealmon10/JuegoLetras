@@ -42,7 +42,6 @@ public class Vista extends JFrame{
         barra.setBackground(Color.GRAY);
         barra.setVisible(false);
         this.add(barra);
-        System.out.println(barra);
         
         this.addKeyListener(c);
         this.setBounds(100, 100, 800, 620);
@@ -186,6 +185,7 @@ public class Vista extends JFrame{
             score.setText("Deberias practicar mas :(");
         }
         c.setCompgame(true);
+        nivel.setText("Nivel: ");
         this.repaint();
     }
     
