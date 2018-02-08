@@ -22,6 +22,7 @@ public class Vista extends JFrame{
     private GeneradorLetras generador;
     private int punt;
     private Barra barra;
+    private Timer timer;
     
     public Vista(Controlador c){
         this.c=c;
@@ -47,7 +48,7 @@ public class Vista extends JFrame{
         this.setBounds(100, 100, 800, 620);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        new Timer(50, c).start();
+        timer=new Timer(50, c);
     }
     
     public void generarLabels(){
@@ -186,6 +187,7 @@ public class Vista extends JFrame{
         }
         c.setCompgame(true);
         nivel.setText("Nivel: ");
+        timer.stop();
         this.repaint();
     }
     
@@ -200,6 +202,7 @@ public class Vista extends JFrame{
             nivel.setText("Nivel: "+game);
             punt=0;
             barra.setVisible(true);
+            timer.start();
             this.repaint();
         }
     }
