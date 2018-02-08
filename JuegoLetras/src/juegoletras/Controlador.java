@@ -7,9 +7,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Controlador implements KeyListener,ActionListener{
-    private int cont,game,velgen;
+    private int cont,game,velgen,gameinicial;
     private Vista v;
-    private boolean isDead=true,start=false;
+    private boolean isDead=true,start=false,compgame=true;
     
     public Controlador(){
         v=new Vista(this);
@@ -22,7 +22,6 @@ public class Controlador implements KeyListener,ActionListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println(e.getKeyCode());
         if(!isDead){
             if(e.getKeyCode() == KeyEvent.VK_RIGHT){
                 v.moverBarra(1);
@@ -68,21 +67,30 @@ public class Controlador implements KeyListener,ActionListener{
 
     public void setGame(int game) {
         this.game = game;
+        if(compgame){
+            gameinicial=game;
+            compgame=false;
+        }
         switch(game){
             case 1:
                 velgen=500;
+                v.changeSpeed(2);
                 break;
             case 2:
                 velgen=400;
+                v.changeSpeed(3);
                 break;
             case 3:
                 velgen=300;
+                v.changeSpeed(3);
                 break;
             case 4:
                 velgen=200;
+                v.changeSpeed(4);
                 break;
             case 5:
                 velgen=100;
+                v.changeSpeed(4);
                 break;
         }
         cont=0;
@@ -95,7 +103,14 @@ public class Controlador implements KeyListener,ActionListener{
     public boolean isIsDead() {
         return isDead;
     }
-    
+
+    public int getGameinicial() {
+        return gameinicial;
+    }
+
+    public void setCompgame(boolean compgame) {
+        this.compgame = compgame;
+    }
     
     
 }

@@ -14,7 +14,6 @@ public class ControladorMenu implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println(e.getActionCommand());
         switch(e.getActionCommand()){
             case "Salir":
                 System.exit(0);
