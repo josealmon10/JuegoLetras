@@ -155,9 +155,7 @@ public class Vista extends JFrame{
             punt--;
         }
         score.setText("PUNTUACION: "+punt);
-        if(punt==10){
-            al.get(0).setSpeed(4);
-        }
+        comprobarMenu();
         this.repaint();
     }
     
@@ -187,6 +185,7 @@ public class Vista extends JFrame{
         if(punt<0){
             score.setText("Deberias practicar mas :(");
         }
+        c.setCompgame(true);
         this.repaint();
     }
     
@@ -216,5 +215,56 @@ public class Vista extends JFrame{
                 al.get(i).changeDirection();
             }
         }
+    }
+    
+    public void comprobarMenu(){
+        switch(c.getGameinicial()){
+            case 1:
+                if(punt>=10 && punt<20){
+                    c.setGame(2);
+                } else if(punt>=20 && punt<30){
+                    c.setGame(3);
+                } else if(punt>=30 && punt<40){
+                    c.setGame(4);
+                } else if(punt>=40){
+                    c.setGame(5);
+                }else{
+                    c.setGame(1);
+                }
+                break;
+            case 2:
+                if(punt>=10 && punt<20){
+                    c.setGame(3);
+                } else if(punt>=20 && punt<30){
+                    c.setGame(4);
+                } else if(punt>=30){
+                    c.setGame(5);
+                }else{
+                    c.setGame(2);
+                }
+                break;
+            case 3:
+                if(punt>=10 && punt<20){
+                    c.setGame(4);
+                } else if(punt>=20){
+                    c.setGame(5);
+                }else{
+                    c.setGame(3);
+                }
+                break;
+            case 4:
+                if(punt>=10){
+                    c.setGame(5);
+                }else{
+                    c.setGame(5);
+                }
+                break;
+        }
+        nivel.setText("Nivel: "+c.getGame());
+        this.repaint();
+    }
+    
+    public void changeSpeed(int n){
+        new Letra(1,1,"").setSpeed(n);
     }
 }
