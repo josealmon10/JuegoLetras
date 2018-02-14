@@ -27,8 +27,7 @@ public class Vista extends JFrame{
     public Vista(Controlador c){
         this.c=c;
         cm=new ControladorMenu(this);
-        generador=new GeneradorLetras();
-        
+        generador=new GeneradorLetras();        
         generarVista();
     }
     
@@ -40,39 +39,41 @@ public class Vista extends JFrame{
         
         crearMenu();
         generarLabels();
-        
+        /*Crear Barra*/
         barra=new Barra(350,480);
         barra.setBounds(barra.getY(), barra.getX(), 100,20 );
         barra.setBackground(Color.GRAY);
         barra.setVisible(false);
         this.add(barra);
-        
+        /*Crear ventana*/
         this.addKeyListener(c);
         this.setBounds(100, 100, 800, 620);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         timer=new Timer(50, c);
     }
+    
     /**
      * Generacion de labels
      */
     public void generarLabels(){
+        /*Frase principal*/
         inicio=new JLabel("Escoge un nivel para comenzar");
         inicio.setBounds(140, 250, 600, 40);
         inicio.setFont (inicio.getFont ().deriveFont (30.0f));
         this.add(inicio);
-        
+        /*Frase de que has perdido*/
         lose=new JLabel("¡Has perdido! Escoge un nuevo nivel");
         lose.setBounds(140, 250, 600, 40);
         lose.setFont (lose.getFont ().deriveFont (30.0f));
         this.add(lose);
         lose.setVisible(false);
-        
+        /*Contador de la puntuacion*/
         score=new JLabel("PUNTUACION: 0");
         score.setBounds(20,500, 400, 100);
         score.setFont (score.getFont ().deriveFont (30.0f));
         this.add(score);
-        
+        /*Nivel en el que esta el jugador*/
         nivel=new JLabel("Nivel: ");
         nivel.setBounds(660, 0, 300, 100);
         nivel.setFont (nivel.getFont ().deriveFont (30.0f));
@@ -110,7 +111,7 @@ public class Vista extends JFrame{
         mNivel.add(n3);
         mNivel.add(n4);
         mNivel.add(n5);
-        //Crear
+        //Crear el accelerator para utilizar el ctrl+numero.
         n1.setAccelerator(KeyStroke.getKeyStroke('1', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         n2.setAccelerator(KeyStroke.getKeyStroke('2', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         n3.setAccelerator(KeyStroke.getKeyStroke('3', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
