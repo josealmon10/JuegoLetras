@@ -27,8 +27,7 @@ public class Vista extends JFrame{
     public Vista(Controlador c){
         this.c=c;
         cm=new ControladorMenu(this);
-        generador=new GeneradorLetras();
-        
+        generador=new GeneradorLetras();        
         generarVista();
     }
     
@@ -37,42 +36,44 @@ public class Vista extends JFrame{
         
         crearMenu();
         generarLabels();
-        
+        /*Crear Barra*/
         barra=new Barra(350,480);
         barra.setBounds(barra.getY(), barra.getX(), 100,20 );
         barra.setBackground(Color.GRAY);
         barra.setVisible(false);
         this.add(barra);
-        
+        /*Crear ventana*/
         this.addKeyListener(c);
         this.setBounds(100, 100, 800, 620);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         timer=new Timer(50, c);
     }
-    
+    /*Crea las frases de la pantalla*/
     public void generarLabels(){
+        /*Frase principal*/
         inicio=new JLabel("Escoge un nivel para comenzar");
         inicio.setBounds(140, 250, 600, 40);
         inicio.setFont (inicio.getFont ().deriveFont (30.0f));
         this.add(inicio);
-        
+        /*Frase de que has perdido*/
         lose=new JLabel("¡Has perdido! Escoge un nuevo nivel");
         lose.setBounds(140, 250, 600, 40);
         lose.setFont (lose.getFont ().deriveFont (30.0f));
         this.add(lose);
         lose.setVisible(false);
-        
+        /*Contador de la puntuacion*/
         score=new JLabel("PUNTUACION: 0");
         score.setBounds(20,500, 400, 100);
         score.setFont (score.getFont ().deriveFont (30.0f));
         this.add(score);
-        
+        /*Nivel en el que esta el jugador*/
         nivel=new JLabel("Nivel: ");
         nivel.setBounds(660, 0, 300, 100);
         nivel.setFont (nivel.getFont ().deriveFont (30.0f));
         this.add(nivel);
     }
+    /*Crea el menu*/
     public void crearMenu(){
         //Creo la barra de menu.
         JMenuBar mb=new JMenuBar();        
@@ -101,7 +102,7 @@ public class Vista extends JFrame{
         mNivel.add(n3);
         mNivel.add(n4);
         mNivel.add(n5);
-        //Crear
+        //Crear el accelerator para utilizar el ctrl+numero.
         n1.setAccelerator(KeyStroke.getKeyStroke('1', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         n2.setAccelerator(KeyStroke.getKeyStroke('2', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         n3.setAccelerator(KeyStroke.getKeyStroke('3', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
@@ -116,6 +117,7 @@ public class Vista extends JFrame{
         n5.addActionListener(cm);
         this.setJMenuBar(mb);
     }
+    /*Genera las letras en la pantalla*/
     public void generarLetras(){
         int comp=0;
         let=generador.generarLetra(c.getGame());
@@ -132,7 +134,7 @@ public class Vista extends JFrame{
         }
         
     }
-    
+    /*Hace que las letras bajen por la pantalla*/
     public void bajar(){
         for (int i = 0; i < al.size(); i++) {
             al.get(i).mover();
@@ -140,7 +142,7 @@ public class Vista extends JFrame{
         }
         this.repaint();
     }
-    
+    /*Comprobador de si has acertado*/
     public void compAcierto(char comp){
         int test=punt;
         for (int i = 0; i < al.size(); i++) {
@@ -158,8 +160,7 @@ public class Vista extends JFrame{
         comprobarMenu();
         this.repaint();
     }
-    
-    
+    /*Cambia la direccion de la letra se golpea la barra*/
     public boolean compAlive(){
         boolean alive=false;
         for (int i = 0; i < al.size(); i++) {
@@ -174,7 +175,7 @@ public class Vista extends JFrame{
         }
         return alive;
     }
-    
+    /*Comprobador de si has perdido*/
     public void lose(){
         for (int i = 0; i < al.size(); i++) {
             this.remove(al.get(i));
@@ -190,7 +191,7 @@ public class Vista extends JFrame{
         timer.stop();
         this.repaint();
     }
-    
+    /*Comenzar el juego*/
     public void start(int game){
         if(c.isIsDead()){
             c.setGame(game);
@@ -206,7 +207,7 @@ public class Vista extends JFrame{
             this.repaint();
         }
     }
-    
+    /*Mueve la barra*/
     public void moverBarra(int num){
         barra.moverBarra(num);
         this.repaint();
@@ -219,7 +220,7 @@ public class Vista extends JFrame{
             }
         }
     }
-    
+    /*Aumenta o disminuye el nivel segun la puntuacion*/
     public void comprobarMenu(){
         switch(c.getGameinicial()){
             case 1:
@@ -266,7 +267,7 @@ public class Vista extends JFrame{
         nivel.setText("Nivel: "+c.getGame());
         this.repaint();
     }
-    
+    /*Cambiar la velocidad de bajada de las letras*/
     public void changeSpeed(int n){
         new Letra(1,1,"").setSpeed(n);
     }
