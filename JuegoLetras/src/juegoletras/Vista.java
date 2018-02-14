@@ -32,7 +32,10 @@ public class Vista extends JFrame{
         generarVista();
     }
     
-    private void generarVista(){
+    /**
+     * Generacion de vista
+     */
+    public void generarVista(){
         this.setLayout(null);
         
         crearMenu();
@@ -50,7 +53,9 @@ public class Vista extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         timer=new Timer(50, c);
     }
-    
+    /**
+     * Generacion de labels
+     */
     public void generarLabels(){
         inicio=new JLabel("Escoge un nivel para comenzar");
         inicio.setBounds(140, 250, 600, 40);
@@ -73,6 +78,10 @@ public class Vista extends JFrame{
         nivel.setFont (nivel.getFont ().deriveFont (30.0f));
         this.add(nivel);
     }
+    
+    /**
+     * Generacion del menu
+     */
     public void crearMenu(){
         //Creo la barra de menu.
         JMenuBar mb=new JMenuBar();        
@@ -116,6 +125,10 @@ public class Vista extends JFrame{
         n5.addActionListener(cm);
         this.setJMenuBar(mb);
     }
+    
+    /**
+     * Generar una nueva letra aleatoria
+     */
     public void generarLetras(){
         int comp=0;
         let=generador.generarLetra(c.getGame());
@@ -133,6 +146,9 @@ public class Vista extends JFrame{
         
     }
     
+    /**
+     * Movimiento de las letras
+     */
     public void bajar(){
         for (int i = 0; i < al.size(); i++) {
             al.get(i).mover();
@@ -141,6 +157,10 @@ public class Vista extends JFrame{
         this.repaint();
     }
     
+    /**
+     * Comprobacion de letra acertada
+     * @param comp Letra pulsada
+     */
     public void compAcierto(char comp){
         int test=punt;
         for (int i = 0; i < al.size(); i++) {
@@ -155,11 +175,14 @@ public class Vista extends JFrame{
             punt--;
         }
         score.setText("PUNTUACION: "+punt);
-        comprobarMenu();
+        comprobarAumentoNivel();
         this.repaint();
     }
     
-    
+    /**
+     * Comprobacion de que sigues vivo
+     * @return Retorna si sigue vivo
+     */
     public boolean compAlive(){
         boolean alive=false;
         for (int i = 0; i < al.size(); i++) {
@@ -175,6 +198,9 @@ public class Vista extends JFrame{
         return alive;
     }
     
+    /**
+     * Perdida de partida
+     */
     public void lose(){
         for (int i = 0; i < al.size(); i++) {
             this.remove(al.get(i));
@@ -191,6 +217,10 @@ public class Vista extends JFrame{
         this.repaint();
     }
     
+    /**
+     * Comenzar partida
+     * @param game Indica el nivel de la partida
+     */
     public void start(int game){
         if(c.isIsDead()){
             c.setGame(game);
@@ -207,11 +237,18 @@ public class Vista extends JFrame{
         }
     }
     
+    /**
+     * Permite el movimiento de la barra
+     * @param num Direccion de la barra
+     */
     public void moverBarra(int num){
         barra.moverBarra(num);
         this.repaint();
     }
     
+    /**
+     * Comprobar colision con la barra
+     */
     public void compBarra(){
         for (int i = 0; i < al.size(); i++) {
             if(al.get(i).getY()>=458 && al.get(i).getX()>barra.getX() && al.get(i).getX()<barra.getX()+105 && al.get(i).getDireccion()==1){
@@ -220,7 +257,10 @@ public class Vista extends JFrame{
         }
     }
     
-    public void comprobarMenu(){
+    /**
+     * Comprobar el aumento del nivel cada 10 puntos
+     */
+    public void comprobarAumentoNivel(){
         switch(c.getGameinicial()){
             case 1:
                 if(punt>=10 && punt<20){
@@ -267,6 +307,10 @@ public class Vista extends JFrame{
         this.repaint();
     }
     
+    /**
+     * Cambia la velocidad de la letra
+     * @param n Velocidad deseada
+     */
     public void changeSpeed(int n){
         new Letra(1,1,"").setSpeed(n);
     }

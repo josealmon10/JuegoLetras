@@ -22,6 +22,9 @@ public class Letra extends JLabel{
         return y;
     }
     
+    /**
+     * Moviemiento de la letra en funcion de de la direccion
+     */
     public void mover(){
         if(direccion==1){
             y+=speed;

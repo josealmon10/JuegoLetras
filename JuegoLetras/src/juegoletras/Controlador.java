@@ -40,10 +40,10 @@ public class Controlador implements KeyListener,ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(!isDead){
+        if(!isDead){//Si no estamos muertos comprobamos si lo estamos
             setIsDead(v.compAlive());
         }
-        if(!isDead){
+        if(!isDead){//Si seguimos sin estarlo continuamos
             if(cont==velgen){
                 v.generarLetras();
                 cont=0;
@@ -65,13 +65,17 @@ public class Controlador implements KeyListener,ActionListener{
         this.isDead = isDead;
     }
 
+    /**
+     * Seleccionar el nivel de juego
+     * @param game Nivel de juego
+     */
     public void setGame(int game) {
         this.game = game;
         if(compgame){
             gameinicial=game;
             compgame=false;
         }
-        switch(game){
+        switch(game){//Depende del nivel cambia la velocidad de genracion y el nivel
             case 1:
                 velgen=500;
                 v.changeSpeed(2);
