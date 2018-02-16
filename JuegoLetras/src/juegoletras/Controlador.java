@@ -46,6 +46,7 @@ public class Controlador implements KeyListener,ActionListener{
         if(!isDead){//Si seguimos sin estarlo continuamos
             if(cont==velgen){
                 v.generarLetras();
+                v.changeSpeed();
                 cont=0;
             }
             v.bajar();
@@ -78,23 +79,18 @@ public class Controlador implements KeyListener,ActionListener{
         switch(game){//Depende del nivel cambia la velocidad de genracion y el nivel
             case 1:
                 velgen=500;
-                v.changeSpeed(2);
                 break;
             case 2:
                 velgen=400;
-                v.changeSpeed(3);
                 break;
             case 3:
                 velgen=300;
-                v.changeSpeed(3);
                 break;
             case 4:
                 velgen=200;
-                v.changeSpeed(4);
                 break;
             case 5:
                 velgen=100;
-                v.changeSpeed(4);
                 break;
         }
         cont=0;

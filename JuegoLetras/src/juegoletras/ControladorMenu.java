@@ -37,6 +37,9 @@ public class ControladorMenu implements ActionListener{
             case "Nivel 5":
                 v.start(5);
                 break;
+            case "Pause":
+                v.pause();
+                break;
         }
     
     }

@@ -59,7 +59,11 @@ public class GeneradorLetras {
                 }
                 break;
             case 5:
-                let=(char)Math.floor(Math.random()*(90-65)+65);
+                if((int)Math.floor(Math.random()*(3-1)+1)==1){
+                    let=(char)Math.floor(Math.random()*(90-65)+65);
+                }else{
+                    let=(char)Math.floor(Math.random()*(57-48)+48);
+                }
                 break;
         }
         return let;
