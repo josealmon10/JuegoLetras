@@ -12,6 +12,10 @@ public class ControladorMenu implements ActionListener{
         this.v=v;
     }
     
+    /**
+     * Seleccion de nivel
+     * @param e Event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()){
@@ -32,6 +36,9 @@ public class ControladorMenu implements ActionListener{
                 break;
             case "Nivel 5":
                 v.start(5);
+                break;
+            case "Pause":
+                v.pause();
                 break;
         }
     
