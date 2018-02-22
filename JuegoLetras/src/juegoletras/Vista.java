@@ -17,8 +17,9 @@ public class Vista extends JFrame{
    
     private ControladorMenu cm;
     private Controlador c;
-    private JLabel score,nivel,lose,inicio;
+    private JLabel score,nivel,lose,inicio,player;
     private ArrayList<Letra> al=new ArrayList();
+    private ArrayList<Integer> moveBarra=new ArrayList();
     private char let;
     private GeneradorLetras generador;
     private int punt;
@@ -26,11 +27,13 @@ public class Vista extends JFrame{
     private Timer timer;
     private boolean pause=false;
     private JPanel panel;
+    private String name;
     
-    public Vista(Controlador c){
+    public Vista(Controlador c,String nombre){
         this.c=c;
         cm=new ControladorMenu(this);
-        generador=new GeneradorLetras();        
+        generador=new GeneradorLetras();   
+        name=nombre;
         generarVista();
     }
     
@@ -58,7 +61,7 @@ public class Vista extends JFrame{
     public void generarLabels(){
         /*Frase principal*/
         inicio=new JLabel("Escoge un nivel para comenzar");
-        inicio.setBounds(140, 250, 600, 40);
+        inicio.setBounds(150, 250, 600, 40);
         inicio.setFont (inicio.getFont ().deriveFont (30.0f));
         this.add(inicio);
         /*Frase de que has perdido*/
@@ -77,6 +80,14 @@ public class Vista extends JFrame{
         nivel.setBounds(660, 0, 300, 100);
         nivel.setFont (nivel.getFont ().deriveFont (30.0f));
         this.add(nivel);
+        
+        if(!name.equals("")){
+            player=new JLabel("<html>Jugador:<br>"+name+"</html>");
+            player.setBounds(660,50,300,100);
+            player.setFont (player.getFont ().deriveFont (20.0f));
+            this.add(player);
+        }
+        
     }
     
     public void generarBarras(){
@@ -292,6 +303,7 @@ public class Vista extends JFrame{
             case 1:
                 if(punt>=10 && punt<20){
                     c.setGame(2);
+                    changeBarras(30,30);
                 } else if(punt>=20 && punt<30){
                     c.setGame(3);
                 } else if(punt>=30 && punt<40){
@@ -371,6 +383,14 @@ public class Vista extends JFrame{
             timer.start();
             pause=false;
             this.remove(panel);
+        }
+    }
+    
+    public void changeBarras(int b1,int b2){
+        if(!moveBarra.contains(c.getGame())){
+            moveBarra.add(c.getGame());
+            barra1.setX(barra1.getX()+b1);
+            barra2.setX(barra2.getX()-b2);
         }
     }
 }

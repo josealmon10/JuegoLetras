@@ -28,4 +28,14 @@ public class Barra extends JPanel{
             x-=10;
         }
     }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+    
+    
 }

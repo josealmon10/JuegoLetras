@@ -5,14 +5,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class Controlador implements KeyListener,ActionListener{
+public class Controlador implements KeyListener,ActionListener,MouseListener{
     private int cont,game,velgen,gameinicial;
     private Vista v;
+    private VistaNombre vn;
     private boolean isDead=true,start=false,compgame=true;
     
     public Controlador(){
-        v=new Vista(this);
+        vn=new VistaNombre(this);
     }
 
     @Override
@@ -82,15 +85,19 @@ public class Controlador implements KeyListener,ActionListener{
                 break;
             case 2:
                 velgen=400;
+                v.changeBarras(30, 30);
                 break;
             case 3:
                 velgen=300;
+                v.changeBarras(30, 30);
                 break;
             case 4:
                 velgen=200;
+                v.changeBarras(30, 30);
                 break;
             case 5:
                 velgen=100;
+                v.changeBarras(30, 30);
                 break;
         }
         cont=0;
@@ -110,6 +117,32 @@ public class Controlador implements KeyListener,ActionListener{
 
     public void setCompgame(boolean compgame) {
         this.compgame = compgame;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        v=new Vista(this,vn.getNombre());
+        vn.setVisible(false);
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        
     }
     
     
