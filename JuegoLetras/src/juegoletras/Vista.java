@@ -90,6 +90,9 @@ public class Vista extends JFrame{
         
     }
     
+    /**
+     * Generacion de ambas barras
+     */
     public void generarBarras(){
         barra1=new Barra(350,480);
         barra1.setBounds(barra1.getY(), barra1.getX(), 100,20 );
@@ -370,6 +373,9 @@ public class Vista extends JFrame{
         }
     }
     
+    /**
+     * Pausa y retomacion de la partida
+     */
     public void pause(){
         if(!pause){
             timer.stop();
@@ -386,6 +392,11 @@ public class Vista extends JFrame{
         }
     }
     
+    /**
+     * Cambia la poscion de las barras en funcion de la puntuacion y el nivel
+     * @param b1
+     * @param b2 
+     */
     public void changeBarras(int b1,int b2){
         if(!moveBarra.contains(c.getGame())){
             moveBarra.add(c.getGame());

@@ -127,7 +127,7 @@ public class Controlador implements KeyListener,ActionListener,MouseListener{
     @Override
     public void mousePressed(MouseEvent e) {
         v=new Vista(this,vn.getNombre());
-        vn.setVisible(false);
+        vn.dispose();
     }
 
     @Override
